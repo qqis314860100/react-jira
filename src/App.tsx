@@ -1,12 +1,13 @@
-import Login from "screens/login";
+import Authenticated from "authenticated";
+import { useAuth } from "context/auth-context";
+import Unauthenticated from "unauthenticated";
 
 import "./App.css";
 
 function App() {
+  const { user } = useAuth();
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <div className="App">{user ? <Authenticated /> : <Unauthenticated />}</div>
   );
 }
 

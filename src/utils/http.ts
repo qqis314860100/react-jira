@@ -1,5 +1,6 @@
 import qs from "qs";
 import * as auth from "auth-provider";
+import { useAuth } from "context/auth-context";
 
 export const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -10,7 +11,7 @@ interface ConfigParams extends RequestInit {
 
 export const http = async (
   endPoint: string,
-  { data, token, headers, ...customConfig }: ConfigParams
+  { data, token, headers, ...customConfig }: ConfigParams = {}
 ) => {
   const config = {
     method: "GET",
@@ -42,4 +43,10 @@ export const http = async (
       return Promise.reject(data);
     }
   });
+};
+
+export const useHttp = () => {
+  const { user } = useAuth();
+  return (...[endPoint, config]: Parameters<typeof http>) =>
+    http(endPoint, { ...config, token: user?.token });
 };

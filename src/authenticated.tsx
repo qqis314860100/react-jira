@@ -1,6 +1,5 @@
 import { useAuth } from "context/auth-context";
-import React from "react";
-import ProjectList from "screens/project-list/search-panel";
+import ProjectList from "screens/project-list";
 
 function Authenticated() {
   const { logout } = useAuth();

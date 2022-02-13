@@ -6215,19 +6215,9 @@ jest@^27.4.3:
     import-local "^3.0.2"
     jest-cli "^27.5.1"
 
-jira-dev-tool@^1.1.0:
+jira-dev-tool@^1.1.0, jira-dev-tool@^1.7.61:
   version "1.7.61"
   resolved "https://registry.npmmirror.com/jira-dev-tool/-/jira-dev-tool-1.7.61.tgz"
-  integrity sha512-ym9L6tQAs7Pi9XrGvoOlz0/dpYR23I2J1C0IDIk3E29YySHwYJ5KWWHZIk9dqiFSkDhfr/ae8CbZBhAbfe8EmQ==
-  dependencies:
-    antd "^4.9.1"
-    msw "^0.24.1"
-    react-query "^2.26.3"
-    react-query-devtools "^2.6.3"
-
-jira-dev-tool@^1.7.61:
-  version "1.7.61"
-  resolved "https://registry.npmmirror.com/jira-dev-tool/-/jira-dev-tool-1.7.61.tgz#32477c1e0f9f9f46ad5ffd61409ac05a1422c17c"
   integrity sha512-ym9L6tQAs7Pi9XrGvoOlz0/dpYR23I2J1C0IDIk3E29YySHwYJ5KWWHZIk9dqiFSkDhfr/ae8CbZBhAbfe8EmQ==
   dependencies:
     antd "^4.9.1"
@@ -8093,6 +8083,13 @@ qs@6.9.6:
   version "6.9.6"
   resolved "https://r2.cnpmjs.org/qs/-/qs-6.9.6.tgz"
   integrity sha512-TIRk4aqYLNoJUbd+g2lEdz5kLWIuTMRagAXxl78Q0RiVjAOugHmeKNGdd3cwo/ktpf9aL9epCfFqWDEKysUlLQ==
+
+qs@^6.10.3:
+  version "6.10.3"
+  resolved "https://registry.npmmirror.com/qs/-/qs-6.10.3.tgz#d6cde1b2ffca87b5aa57889816c5f81535e22e8e"
+  integrity sha512-wr7M2E0OFRfIfJZjKGieI8lBKb7fRCH4Fv5KNPEs7gJ8jadvotdsS08PzOKR7opXhZ/Xkjtt3WF9g38drmyRqQ==
+  dependencies:
+    side-channel "^1.0.4"
 
 queue-microtask@^1.2.2:
   version "1.2.3"

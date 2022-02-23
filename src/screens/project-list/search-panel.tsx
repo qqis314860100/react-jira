@@ -1,13 +1,13 @@
-import { Input, Select } from "antd";
 import React from "react";
+import { Input, Select } from "antd";
 
 export interface User {
   id: string;
   name: string;
   email: string;
   title: string;
-  token: string;
   organization: string;
+  token: string;
 }
 
 interface SearchPanelProps {

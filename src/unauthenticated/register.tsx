@@ -1,30 +1,26 @@
 import { useAuth } from "context/auth-context";
-import { FormEvent } from "react";
+import { Button, Form, Input } from "antd";
+import { LongButton } from "unauthenticated";
 
 function Register() {
-  const { user, register } = useAuth();
-  const handleRegister = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const username = (event.currentTarget.elements[0] as HTMLInputElement)
-      .value;
-    const password = (event.currentTarget.elements[1] as HTMLInputElement)
-      .value;
-    register({ username, password });
+  const { register } = useAuth();
+  const handleLogin = (values: { username: string; password: string }) => {
+    register(values);
   };
   return (
-    <form onSubmit={handleRegister}>
-      <div>
-        <label htmlFor="username">用户名</label>
-        <input type="text" name="username" id="username" />
-      </div>
-      <div>
-        <label htmlFor="username">密码</label>
-        <input type="text" name="password" id="password" />
-      </div>
-      <div>
-        <button type="submit">注册</button>
-      </div>
-    </form>
+    <Form onFinish={handleLogin}>
+      <Form.Item name="username">
+        <Input type="text" placeholder="用户名" />
+      </Form.Item>
+      <Form.Item name="password">
+        <Input type="password" placeholder="密码" />
+      </Form.Item>
+      <Form.Item>
+        <LongButton htmlType="submit" type="primary">
+           注册
+        </LongButton>
+      </Form.Item>
+    </Form>
   );
 }
 

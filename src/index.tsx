@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import AppProvider from "context";
 import { loadDevTools } from "jira-dev-tool";
+import App from "./App";
 
 loadDevTools(() =>
   ReactDOM.render(

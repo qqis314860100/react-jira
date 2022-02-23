@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Row } from "antd";
+import { Row, Dropdown, Menu, Button } from "antd";
 import { useAuth } from "context/auth-context";
 import { ProjectListScreen } from "screens/project-list";
+import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 
 /**
  *
@@ -17,17 +18,29 @@ import { ProjectListScreen } from "screens/project-list";
  */
 
 function Authenticated() {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   return (
     <Container>
       <Header>
         <HeaderLeft>
-          <h2>Logo</h2>
+          <SoftwareLogo width={"18rem"} color={"rgb(38,132,255)"} />
           <h2>项目</h2>
           <h2>用户</h2>
         </HeaderLeft>
         <HeaderRight>
-          <button onClick={logout}>登出</button>
+          <Dropdown
+            overlay={
+              <Menu>
+                <Menu.Item key={"logout"}>
+                  <Button onClick={logout}>登出</Button>
+                </Menu.Item>
+              </Menu>
+            }
+          >
+            <Button type="link" onClick={(e) => e.preventDefault()}>
+              Hi,{user?.username}
+            </Button>
+          </Dropdown>
         </HeaderRight>
       </Header>
       <Main>

@@ -14,7 +14,7 @@ export const ProjectListScreen = () => {
 
   useEffect(() => {
     client("projects", { data: cleanObject(debouncedParam) }).then(setList);
-    //
+    // eslint-disable-next-line
   }, [debouncedParam]);
 
   useMount(() => {
@@ -24,7 +24,7 @@ export const ProjectListScreen = () => {
     <Container>
       <h1>项目列表</h1>
       <SearchPanel users={users} param={param} setParam={setParam} />
-      <List users={users} list={list} />
+      <List users={users} dataSource={list} />
     </Container>
   );
 };

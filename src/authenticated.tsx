@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Row, Dropdown, Menu, Button } from "antd";
+import { Dropdown, Menu, Button } from "antd";
 import { useAuth } from "context/auth-context";
 import { ProjectListScreen } from "screens/project-list";
+import { Row } from "components/lib";
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 
 /**
@@ -21,8 +22,8 @@ function Authenticated() {
   const { logout, user } = useAuth();
   return (
     <Container>
-      <Header>
-        <HeaderLeft>
+      <Header between>
+        <HeaderLeft gap>
           <SoftwareLogo width={"18rem"} color={"rgb(38,132,255)"} />
           <h2>项目</h2>
           <h2>用户</h2>
@@ -49,10 +50,6 @@ function Authenticated() {
     </Container>
   );
 }
-
-const HeaderItem = styled.h3`
-  margin-right: 3rem;
-`;
 
 const Container = styled.div`
   display: grid;

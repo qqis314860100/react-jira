@@ -1,4 +1,7 @@
 import * as auth from "auth-provider";
+import { User } from "auth-provider";
+import { FullPageLoading } from "components/lib";
+import { useAsync } from "hooks/useAsync";
 import { useMount } from "hooks/useMound";
 import React, { useState } from "react";
 import { http } from "utils/http";
@@ -12,7 +15,7 @@ const bootstrapUser = async () => {
   let user = null;
   const token = auth.getToken;
   if (token) {
-    const data = await http("/me", { token });
+    const data = await http("me", { token });
     user = data.user;
   }
   return user;
@@ -30,15 +33,27 @@ const AuthContext = React.createContext<
 AuthContext.displayName = "AuthContext";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<auth.User | null>(null);
+  const {
+    data: user,
+    error,
+    isLoading,
+    isIdle,
+    isError,
+    run,
+    setData: setUser,
+  } = useAsync<User | null>();
   const login = (form: AuthForm) => auth.login(form).then(setUser);
   const register = (form: AuthForm) => auth.register(form).then(setUser);
   const logout = () => auth.logout().then(() => setUser(null));
 
   // 初始化user
   useMount(() => {
-    bootstrapUser().then(setUser);
+    run(bootstrapUser());
   });
+
+  if (isIdle || isLoading) {
+    return <FullPageLoading />;
+  }
 
   return (
     <AuthContext.Provider

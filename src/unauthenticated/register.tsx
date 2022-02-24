@@ -3,7 +3,7 @@ import { useAuth } from "context/auth-context";
 import { Button, Form, Input } from "antd";
 import { LongButton } from "unauthenticated";
 
-function Register() {
+function Register({ onError }: { onError: (error: Error) => void }) {
   const { register } = useAuth();
   const handleLogin = (values: { username: string; password: string }) => {
     register(values);

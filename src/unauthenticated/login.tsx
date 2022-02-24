@@ -2,14 +2,24 @@ import React from "react";
 import { useAuth } from "context/auth-context";
 import { Button, Form, Input } from "antd";
 import { LongButton } from "unauthenticated";
+import { useAsync } from "hooks/useAsync";
 
-function Login() {
+function Login({ onError }: { onError: (error: Error) => void }) {
   const { user, login } = useAuth();
-  const handleLogin = (values: { username: string; password: string }) => {
-    login(values);
+  const { run, isLoading } = useAsync(undefined, { throwOnError: true });
+  const handleSubmit = async (values: {
+    username: string;
+    password: string;
+  }) => {
+    try {
+      await run(login(values));
+    } catch (error) {
+      onError(error as Error);
+    }
   };
+
   return (
-    <Form onFinish={handleLogin}>
+    <Form onFinish={handleSubmit}>
       <Form.Item name="username">
         <Input type="text" placeholder="用户名" />
       </Form.Item>
